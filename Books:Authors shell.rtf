@@ -1,0 +1,276 @@
+{\rtf1\ansi\ansicpg1252\cocoartf2513
+\cocoatextscaling0\cocoaplatform0{\fonttbl\f0\fnil\fcharset0 Menlo-Regular;}
+{\colortbl;\red255\green255\blue255;\red0\green0\blue0;}
+{\*\expandedcolortbl;;\csgray\c0;}
+\margl1440\margr1440\vieww10800\viewh8400\viewkind0
+\pard\tx560\tx1120\tx1680\tx2240\tx2800\tx3360\tx3920\tx4480\tx5040\tx5600\tx6160\tx6720\pardirnatural\partightenfactor0
+
+\f0\fs22 \cf2 \CocoaLigature0 >>> from main.models import *\
+>>>Book.objects.create(title=\'93C Sharp\'94)\
+Book object (1)\
+>>>Book.objects.create(title=\'93Java\'94)\
+Book object (2)\
+>>>Book.objects.create(title=\'93Python\'94)\
+Book object (3)\
+>>>Book.objects.create(title=\'93PHP\'94)\
+Book object (4)\
+>>>Book.objects.create(title=\'93Ruby\'94)\
+Book object (5)\
+>>>Author.objects.create(first_name=\'93Jane\'94, last_name=\'93Austen\'94)\
+Author object (1)\
+>>>Author.objects.create(first_name=\'93Emily\'94, last_name=\'93Dickinson\'94)\
+Author object (2)\
+>>>Author.objects.create(first_name=\'93Fyodor, last_name=\'93Dostoevsky\'94)\
+Author object (3)\
+>>>Author.objects.create(first_name=\'93William\'94, last_name=\'93Shakespeare\'94)\
+Author object (4)\
+>>>Author.objects.create(first_name=\'93Lau\'94, last_name=\'93Tzu\'94)\
+Author object (5)\
+\
+>>> Book.objects.all()\
+<QuerySet [<Book: Book object (1)>, <Book: Book object (2)>, <Book: Book object (3)>, <Book: Book object (4)>, <Book: Book object (5)>]>\
+>>> Author.objects.all()\
+<QuerySet [<Author: Author object (1)>, <Author: Author object (2)>, <Author: Author object (3)>, <Author: Author object (4)>, <Author: Author object (5)>]>\
+>>> c = Book.objects.get(id=1)\
+>>> c.title="C #"\
+>>> c.save()\
+>>> c = Author.objects.get(id=4)\
+>>> c.first_name="Bill"\
+>>> c.save()\
+>>> this_book = Book.objects.get(id=4)\
+>>> this_author = author.objects.get(id=1)\
+Traceback (most recent call last):\
+  File "<console>", line 1, in <module>\
+NameError: name 'author' is not defined\
+>>> this_author = Author.objects.get(id=1)\
+>>> \
+>>> this_author.books.remove(this_book)\
+>>> this_book = Book.objects.get(id=1)\
+>>> this_author = Author.objects.get(id=1)\
+>>> this_author.books.add(this_book)\
+>>> this_book=Book.objects.get(id=2)\
+>>> this_author = Author.objects.get(id=1)\
+>>> this_author.books.add(this_book)\
+>>> this_book = Book.objects.get(id=1)\
+>>> this_book = Book.objects.get(id=2)\
+>>> this_book = Book.objects.get(id=3)\
+>>> this_author = Author.objects.get(id=2)\
+>>> this_author.books.add(this_book)\
+>>> this_book = Book.objects.get(id=1)\
+>>> this_book = Book.objects.get(id=2)\
+>>> this_book = Book.objects.get(id=3)\
+>>> this_book = Book.objects.get(id=4)\
+>>> this_author = Author.objects.get(id=3)\
+>>> this_author.books.add(this_book)\
+>>> this_book - Book.objects.get(id=1)\
+Traceback (most recent call last):\
+  File "<console>", line 1, in <module>\
+TypeError: unsupported operand type(s) for -: 'Book' and 'Book'\
+>>> this_book = Book.objects.get(id=1, id=2, id=3, id=4, id=5)\
+  File "<console>", line 1\
+SyntaxError: keyword argument repeated\
+>>> this_book = Book.objects.get(id=1)\
+>>> this_book = Book.objects.get(id=2)\
+>>> this_book = Book.objects.get(id=3)\
+>>> this_book = Book.objects.get(id=4)\
+>>> this_book = Book.objects.get(id=5)\
+>>> this_author = Author.objects.get(id=4)\
+>>> Book.objects.get(id=3)\
+<Book: Book object (3)>\
+(P3env) Sheenas-MacBook-Pro:book_authors_proj Ballew$ python3 manage.py shell\
+Python 3.8.2 (default, Dec 21 2020, 15:06:04) \
+[Clang 12.0.0 (clang-1200.0.32.29)] on darwin\
+Type "help", "copyright", "credits" or "license" for more information.\
+(InteractiveConsole)\
+>>> this>>> this_book = Book.objects.get(id=3)\
+Traceback (most recent call last):\
+  File "<console>", line 1, in <module>\
+NameError: name 'Book' is not defined\
+>>> from main.models import *\
+>>> Author.objects.all()\
+<QuerySet [<Author: Author object (1)>, <Author: Author object (2)>, <Author: Author object (3)>, <Author: Author object (4)>, <Author: Author object (5)>]>\
+>>> Author.objects.all().__dict__\
+>>> exit()\
+(P3env) Sheenas-MacBook-Pro:book_authors_proj Ballew$ python3 manage.py shell\
+Python 3.8.2 (default, Dec 21 2020, 15:06:04) \
+[Clang 12.0.0 (clang-1200.0.32.29)] on darwin\
+Type "help", "copyright", "credits" or "license" for more information.\
+(InteractiveConsole)\
+>>> from main.models import *\
+>>> Author.objects.first()\
+Name: Jane\
+>>> Author.objects.last()\
+Name: Lau\
+>>> Author.objects.all()\
+<QuerySet [Name: Jane, Name: Emily, Name: Fyodor, Name: Bill, Name: Lau]>\
+>>> exit()\
+(P3env) Sheenas-MacBook-Pro:book_authors_proj Ballew$ python3 manage.py shell\
+Python 3.8.2 (default, Dec 21 2020, 15:06:04) \
+[Clang 12.0.0 (clang-1200.0.32.29)] on darwin\
+Type "help", "copyright", "credits" or "license" for more information.\
+(InteractiveConsole)\
+>>> from main.models import *\
+>>> Author.objects.all()\
+Traceback (most recent call last):\
+  File "<console>", line 1, in <module>\
+  File "/Users/Ballew/Desktop/Coding-Dojo/python_stack/my_environments/P3env/lib/python3.8/site-packages/django/db/models/query.py", line 253, in __repr__\
+    return '<%s %r>' % (self.__class__.__name__, data)\
+  File "/Users/Ballew/Desktop/Coding-Dojo/python_stack/django/django_intro/book_authors_proj/main/models.py", line 22, in __repr__\
+    return "Name: \{\}".format(self.first_name.last_name)\
+AttributeError: 'str' object has no attribute 'last_name'\
+>>> exit()\
+(P3env) Sheenas-MacBook-Pro:book_authors_proj Ballew$ python3 manage.py shell\
+Traceback (most recent call last):\
+  File "manage.py", line 21, in <module>\
+    main()\
+  File "manage.py", line 17, in main\
+    execute_from_command_line(sys.argv)\
+  File "/Users/Ballew/Desktop/Coding-Dojo/python_stack/my_environments/P3env/lib/python3.8/site-packages/django/core/management/__init__.py", line 381, in execute_from_command_line\
+    utility.execute()\
+  File "/Users/Ballew/Desktop/Coding-Dojo/python_stack/my_environments/P3env/lib/python3.8/site-packages/django/core/management/__init__.py", line 357, in execute\
+    django.setup()\
+  File "/Users/Ballew/Desktop/Coding-Dojo/python_stack/my_environments/P3env/lib/python3.8/site-packages/django/__init__.py", line 24, in setup\
+    apps.populate(settings.INSTALLED_APPS)\
+  File "/Users/Ballew/Desktop/Coding-Dojo/python_stack/my_environments/P3env/lib/python3.8/site-packages/django/apps/registry.py", line 114, in populate\
+    app_config.import_models()\
+  File "/Users/Ballew/Desktop/Coding-Dojo/python_stack/my_environments/P3env/lib/python3.8/site-packages/django/apps/config.py", line 211, in import_models\
+    self.models_module = import_module(models_module_name)\
+  File "/Library/Developer/CommandLineTools/Library/Frameworks/Python3.framework/Versions/3.8/lib/python3.8/importlib/__init__.py", line 127, in import_module\
+    return _bootstrap._gcd_import(name[level:], package, level)\
+  File "<frozen importlib._bootstrap>", line 1014, in _gcd_import\
+  File "<frozen importlib._bootstrap>", line 991, in _find_and_load\
+  File "<frozen importlib._bootstrap>", line 975, in _find_and_load_unlocked\
+  File "<frozen importlib._bootstrap>", line 671, in _load_unlocked\
+  File "<frozen importlib._bootstrap_external>", line 779, in exec_module\
+  File "<frozen importlib._bootstrap_external>", line 916, in get_code\
+  File "<frozen importlib._bootstrap_external>", line 846, in source_to_code\
+  File "<frozen importlib._bootstrap>", line 219, in _call_with_frames_removed\
+  File "/Users/Ballew/Desktop/Coding-Dojo/python_stack/django/django_intro/book_authors_proj/main/models.py", line 22\
+    return "Name: \{\}".format(self.first_name; self.last_name)\
+                                            ^\
+SyntaxError: invalid syntax\
+(P3env) Sheenas-MacBook-Pro:book_authors_proj Ballew$ python3 manage.py shell\
+Traceback (most recent call last):\
+  File "manage.py", line 21, in <module>\
+    main()\
+  File "manage.py", line 17, in main\
+    execute_from_command_line(sys.argv)\
+  File "/Users/Ballew/Desktop/Coding-Dojo/python_stack/my_environments/P3env/lib/python3.8/site-packages/django/core/management/__init__.py", line 381, in execute_from_command_line\
+    utility.execute()\
+  File "/Users/Ballew/Desktop/Coding-Dojo/python_stack/my_environments/P3env/lib/python3.8/site-packages/django/core/management/__init__.py", line 357, in execute\
+    django.setup()\
+  File "/Users/Ballew/Desktop/Coding-Dojo/python_stack/my_environments/P3env/lib/python3.8/site-packages/django/__init__.py", line 24, in setup\
+    apps.populate(settings.INSTALLED_APPS)\
+  File "/Users/Ballew/Desktop/Coding-Dojo/python_stack/my_environments/P3env/lib/python3.8/site-packages/django/apps/registry.py", line 114, in populate\
+    app_config.import_models()\
+  File "/Users/Ballew/Desktop/Coding-Dojo/python_stack/my_environments/P3env/lib/python3.8/site-packages/django/apps/config.py", line 211, in import_models\
+    self.models_module = import_module(models_module_name)\
+  File "/Library/Developer/CommandLineTools/Library/Frameworks/Python3.framework/Versions/3.8/lib/python3.8/importlib/__init__.py", line 127, in import_module\
+    return _bootstrap._gcd_import(name[level:], package, level)\
+  File "<frozen importlib._bootstrap>", line 1014, in _gcd_import\
+  File "<frozen importlib._bootstrap>", line 991, in _find_and_load\
+  File "<frozen importlib._bootstrap>", line 975, in _find_and_load_unlocked\
+  File "<frozen importlib._bootstrap>", line 671, in _load_unlocked\
+  File "<frozen importlib._bootstrap_external>", line 779, in exec_module\
+  File "<frozen importlib._bootstrap_external>", line 916, in get_code\
+  File "<frozen importlib._bootstrap_external>", line 846, in source_to_code\
+  File "<frozen importlib._bootstrap>", line 219, in _call_with_frames_removed\
+  File "/Users/Ballew/Desktop/Coding-Dojo/python_stack/django/django_intro/book_authors_proj/main/models.py", line 22\
+    return "Name: \{\}".format(self.first_name self.last_name)\
+                                             ^\
+SyntaxError: invalid syntax\
+(P3env) Sheenas-MacBook-Pro:book_authors_proj Ballew$ python3 manage.py shell\
+Python 3.8.2 (default, Dec 21 2020, 15:06:04) \
+[Clang 12.0.0 (clang-1200.0.32.29)] on darwin\
+Type "help", "copyright", "credits" or "license" for more information.\
+(InteractiveConsole)\
+>>> Author.objects.all()\
+Traceback (most recent call last):\
+  File "<console>", line 1, in <module>\
+NameError: name 'Author' is not defined\
+>>> from main.models import *\
+\
+>>> Author.objects.all()\
+<QuerySet [Name: Jane, Name: Emily, Name: Fyodor, Name: Bill, Name: Lau]>\
+>>> Author.objects.first()\
+Name: Jane\
+>>> Book.objects.all()\
+<QuerySet [Title: C #, Title: Java, Title: Python, Title: PHP, Title: Ruby]>\
+>>> this_book=Book.objects.get(id=3)\
+>>> this_book.Authors.all()\
+<QuerySet [Name: Emily]>\
+>>> this_book = Book.objects.get(id=2)\
+>>> this_author = Author.objects.get(id=2)\
+>>> this_author.books.add(this_book)\
+>>> this_book = Book.objects.get(id=1)\
+>>> this_author = Author.objects.get(id=2)\
+>>> this_author.books.add(this_book)\
+>>> this_author.books.all()\
+<QuerySet [Title: C #, Title: Java, Title: Python]>\
+>>> this_book=Book.objects.get(id=3)\
+>>> this_author=Author.objects.get(id=3)\
+>>> this_author.books.add(this_book)\
+>>> this_book=Book.objects.get(id=2)\
+>>> this_author=Author.objects.get(id=3)\
+>>> this_author.books.add(this_book)\
+>>> this_book=Book.objects.get(id=1)\
+>>> this_author=Author.objects.get(id=3)\
+>>> this_author.books.add(this_book)\
+>>> this book=Book.objects.get(id=4)\
+  File "<console>", line 1\
+    this book=Book.objects.get(id=4)\
+         ^\
+SyntaxError: invalid syntax\
+>>> this_book=Book.objects.get(id=4)\
+>>> this_author=Author.objects.get(id=4)\
+>>> this_author.books.add(this_book)\
+>>> this_book=Book.objects.get(id=3)\
+>>> this_author=Author.objects.get(id=4)\
+>>> this_author.books.add(this_book)\
+>>> this_book=Book.objects.get(id=2)\
+>>> this_author=Author.objects.get(id=4)\
+>>> this_author.books.add(this_book)\
+>>> this_book=Book.objects.get(id=1)\
+>>> this_author=Author.objects.get(id=4)\
+>>> this_author.books.add(this_book)\
+>>> this_author.books.all()\
+<QuerySet [Title: C #, Title: Java, Title: Python, Title: PHP]>\
+>>> this_book=Book.objects.get(id=5)\
+>>> this_author=Author.objects.get(id=4)\
+>>> this_author.books.add(this_book)\
+>>> this_author.books.all()\
+<QuerySet [Title: C #, Title: Java, Title: Python, Title: PHP, Title: Ruby]>\
+>>> Author.objects.get(id=3)\
+Name: Fyodor\
+>>> this_author.books.all()\
+<QuerySet [Title: C #, Title: Java, Title: Python, Title: PHP, Title: Ruby]>\
+>>> this_book=Book.objects.get(id=4)\
+>>> this_author=Author.objects.get(id=3)\
+>>> this_author.books.all()\
+<QuerySet [Title: C #, Title: Java, Title: Python, Title: PHP]>\
+>>> this_book.Authors.all()\
+<QuerySet [Name: Fyodor, Name: Bill]>\
+>>> this_book=Book.objects.get(id=3)\
+>>> this_book.Authors.all()\
+<QuerySet [Name: Emily, Name: Fyodor, Name: Bill]>\
+>>> this_book=Book.objects.get(id=3)\
+>>> this_author=Author.objects.get(id=1)\
+>>> this_author.books.remove(this_book)\
+>>> this_book=Book.objects.get(id=2)\
+>>> this_author=Author.objects.get(id=5)\
+>>> this_author.books.add(this_book)\
+>>> this_author.books.all()\
+<QuerySet [Title: Java]>\
+>>> this_author=Author.objects.get(id=3)\
+>>> this_author.books.all()\
+<QuerySet [Title: C #, Title: Java, Title: Python, Title: PHP]>\
+>>> this_book=book.objects.get(id=5)\
+Traceback (most recent call last):\
+  File "<console>", line 1, in <module>\
+NameError: name 'book' is not defined\
+>>> this_book=Book.objects.get(id=5)\
+>>> this_author.books.all()\
+<QuerySet [Title: C #, Title: Java, Title: Python, Title: PHP]>\
+>>> this_book.Authors.all()\
+<QuerySet [Name: Bill]>\
+>>> }
